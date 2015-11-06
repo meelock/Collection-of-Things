@@ -1,0 +1,16 @@
+[
+{
+  "modid": "furnacetest",
+  "name": "Furnace Test",
+  "description": "A mod for testing furnaces.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Kneelawk"],
+  "credits": "Kneelawk, for making the mod.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
