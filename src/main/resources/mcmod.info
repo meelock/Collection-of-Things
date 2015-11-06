@@ -1,14 +1,14 @@
 [
 {
-  "modid": "furnacetest",
-  "name": "Furnace Test",
-  "description": "A mod for testing furnaces.",
+  "modid": "collectionofthings",
+  "name": "Collection of Things",
+  "description": "A mod with a bunch of Meelock and Kneelawk's random ideas.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Kneelawk"],
-  "credits": "Kneelawk, for making the mod.",
+  "authorList": ["Kneelawk", "Meelock"],
+  "credits": "Kneelawk and Meelock, for making the mod.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
