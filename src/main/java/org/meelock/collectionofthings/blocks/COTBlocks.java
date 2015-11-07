@@ -8,6 +8,7 @@ import org.meelock.collectionofthings.cfg.COTConfig;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class COTBlocks {
@@ -15,7 +16,8 @@ public class COTBlocks {
 	private static final HashMap<String, String> oreDictMap = new HashMap<String, String>();
 
 	public static void init() {
-
+		addBlock(new TestBlock(Material.rock), "TestBlock");
+		
 	}
 
 	public static <T extends Block> T addBlock(T block, String name) {
