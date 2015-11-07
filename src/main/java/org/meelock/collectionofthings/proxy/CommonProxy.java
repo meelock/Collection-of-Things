@@ -15,6 +15,7 @@ public abstract class CommonProxy {
 
 	public void init(FMLInitializationEvent event) {
 		COTBlocks.registerBlocks();
+		COTItems.registerOres();
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {

@@ -30,7 +30,7 @@ public class COTItems {
 		return item;
 	}
 
-	public static void register() {
+	public static void registerOres() {
 		Set<Entry<String, Item>> entrySet = items.entrySet();
 		for (Entry<String, Item> entry : entrySet) {
 			if (oreDictMap.containsKey(entry.getKey()))
