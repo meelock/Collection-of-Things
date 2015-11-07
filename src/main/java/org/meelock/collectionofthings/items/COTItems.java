@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -15,16 +16,20 @@ public class COTItems {
 
 	}
 
-	public static <T extends Item> T addItem(T item, String name) {
+	public static <T extends Item> T addItem(T item, String name,
+			CreativeTabs tab) {
 		item.setUnlocalizedName(name);
 		item.setTextureName(name);
+		item.setCreativeTab(tab);
 		items.put(name, item);
 		return item;
 	}
 
-	public static <T extends Item> T addItem(T item, String name, String oreName) {
+	public static <T extends Item> T addItem(T item, String name,
+			CreativeTabs tab, String oreName) {
 		item.setUnlocalizedName(name);
 		item.setTextureName(name);
+		item.setCreativeTab(tab);
 		items.put(name, item);
 		oreDictMap.put(name, oreName);
 		return item;
