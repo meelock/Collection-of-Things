@@ -20,6 +20,7 @@ public class COTBlocks {
 	public static void init() {
 		addBlock(new TestBlock(Material.rock), "TestBlock",
 				CreativeTabs.tabBlock);
+		
 
 	}
 

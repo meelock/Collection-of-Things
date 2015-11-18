@@ -18,6 +18,7 @@ public class CollectionOfThings {
 	@SidedProxy(clientSide = CPRef.CLIENT_PROXY, serverSide = CPRef.SERVER_PROXY)
 	public static CommonProxy proxy;
 
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit(event);
