@@ -18,7 +18,7 @@ public class COTBlocks {
 	private static final HashMap<String, String> oreDictMap = new HashMap<String, String>();
 
 	public static void init() {
-		addBlock(new TestBlock(Material.rock), "TestBlock",
+		addBlock(new TestBlock(Material.rock), "ItemLayingOnTheGround",
 				CreativeTabs.tabBlock);
 		
 
