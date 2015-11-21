@@ -17,7 +17,7 @@ public class COTItems {
 	private static final HashMap<String, String> oreDictMap = new HashMap<String, String>();
 
 	public static void init() {
-		addItem(new machieneactivator1(Material.air), "activator-stone-unanimated", CreativeTabs.tabMisc);
+		addItem(new machieneactivator1(), "activator-stone-unanimated", CreativeTabs.tabMisc);
 	}
 
 	public static <T extends Item> T addItem(T item, String name,

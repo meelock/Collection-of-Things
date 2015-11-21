@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 
 public class machieneactivator1 extends Item {
 
-	protected machieneactivator1(Material arg1) {
+	protected machieneactivator1() {
 		super();
 		
 	}
