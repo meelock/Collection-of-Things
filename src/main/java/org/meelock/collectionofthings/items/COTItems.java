@@ -2,12 +2,11 @@ package org.meelock.collectionofthings.items;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
-
-import org.meelock.collectionofthings.blocks.TestBlock;
-
 import java.util.Set;
 
-import net.minecraft.block.material.Material;
+import org.meelock.collectionofthings.ref.NameRef;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
@@ -17,7 +16,8 @@ public class COTItems {
 	private static final HashMap<String, String> oreDictMap = new HashMap<String, String>();
 
 	public static void init() {
-		addItem(new machieneactivator1(), "activator-stone-unanimated", CreativeTabs.tabMisc);
+		addItem(new ItemPlaceable(), NameRef.Items.ACTIVATOR_STONE,
+				CreativeTabs.tabMisc);
 	}
 
 	public static <T extends Item> T addItem(T item, String name,
@@ -26,6 +26,7 @@ public class COTItems {
 		item.setTextureName(name);
 		item.setCreativeTab(tab);
 		items.put(name, item);
+		GameRegistry.registerItem(item, name);
 		return item;
 	}
 
@@ -36,6 +37,7 @@ public class COTItems {
 		item.setCreativeTab(tab);
 		items.put(name, item);
 		oreDictMap.put(name, oreName);
+		GameRegistry.registerItem(item, name);
 		return item;
 	}
 
