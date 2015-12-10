@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.meelock.collectionofthings.ref.ModRef;
 import org.meelock.collectionofthings.ref.NameRef;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -23,7 +24,7 @@ public class COTItems {
 	public static <T extends Item> T addItem(T item, String name,
 			CreativeTabs tab) {
 		item.setUnlocalizedName(name);
-		item.setTextureName(name);
+		item.setTextureName(ModRef.MOD_ID + ":" + name);
 		item.setCreativeTab(tab);
 		items.put(name, item);
 		GameRegistry.registerItem(item, name);
@@ -33,7 +34,7 @@ public class COTItems {
 	public static <T extends Item> T addItem(T item, String name,
 			CreativeTabs tab, String oreName) {
 		item.setUnlocalizedName(name);
-		item.setTextureName(name);
+		item.setTextureName(ModRef.MOD_ID + ":" + name);
 		item.setCreativeTab(tab);
 		items.put(name, item);
 		oreDictMap.put(name, oreName);

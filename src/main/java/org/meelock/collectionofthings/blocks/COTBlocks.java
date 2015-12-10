@@ -10,6 +10,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.oredict.OreDictionary;
 
 import org.meelock.collectionofthings.cfg.COTConfig;
+import org.meelock.collectionofthings.ref.ModRef;
+import org.meelock.collectionofthings.ref.NameRef;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -18,10 +20,11 @@ public class COTBlocks {
 	private static final HashMap<String, String> oreDictMap = new HashMap<String, String>();
 
 	public static void init() {
+		// not sure this line's purpose
 		addBlock(new TestBlock(Material.rock), "ItemLayingOnTheGround",
 				CreativeTabs.tabBlock);
 		
-
+		addBlock(new BlockPlacedItem(Material.rock), NameRef.Blocks.PLACED_ITEM, null);
 	}
 
 	public static <T extends Block> T addBlock(T block, String name,
@@ -29,7 +32,7 @@ public class COTBlocks {
 		if (!COTConfig.isBlockEnabled(name))
 			return block;
 		block.setBlockName(name);
-		block.setBlockTextureName(name);
+		block.setBlockTextureName(ModRef.MOD_ID + ":" + name);
 		block.setCreativeTab(tab);
 		blocks.put(name, block);
 		return block;
@@ -40,7 +43,7 @@ public class COTBlocks {
 		if (!COTConfig.isBlockEnabled(name))
 			return block;
 		block.setBlockName(name);
-		block.setBlockTextureName(name);
+		block.setBlockTextureName(ModRef.MOD_ID + ":" + name);
 		block.setCreativeTab(tab);
 		blocks.put(name, block);
 		oreDictMap.put(name, oreName);

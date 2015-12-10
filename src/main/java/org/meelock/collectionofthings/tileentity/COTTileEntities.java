@@ -5,7 +5,9 @@ import java.util.HashMap;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import org.meelock.collectionofthings.ref.NameRef;
 import org.meelock.collectionofthings.tileentity.factory.TileEntityFactory;
+import org.meelock.collectionofthings.tileentity.factory.TileEntityPlacedItemFactory;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -14,7 +16,8 @@ public class COTTileEntities {
 	public static HashMap<String, TileEntityFactory> factories = new HashMap<String, TileEntityFactory>();
 
 	public static void init() {
-
+		register(new TileEntityPlacedItemFactory(),
+				NameRef.TileEntities.PLACED_ITEM);
 	}
 
 	public static void register(TileEntityFactory factory, String name) {
