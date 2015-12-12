@@ -26,6 +26,7 @@ public class ItemPlaceable extends Item {
 		ItemStack single = player.inventory.decrStackSize(
 				player.inventory.currentItem, 1);
 		tile.setItem(single);
+		world.setBlockMetadataWithNotify(x, y, z, side, 2);
 		return true;
 	}
 }

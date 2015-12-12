@@ -75,11 +75,12 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 			// GL11.glTranslatef(0.16F, -0.16F, 0.0F);
 			// }
 
-			GL11.glTranslated(x, y, z);
+			GL11.glTranslated(x + 0.5d, y + 0.5d, z + 0.5d);
 
 			switch (direct) {
 			case DOWN:
-				GL11.glTranslatef(0f, 0.5f - 1f / 16f, 0f);
+				GL11.glTranslatef(0f, -0.5f + (1f / 16f), 0f);
+				GL11.glRotatef(90f, 1f, 0f, 0f);
 				break;
 			case UP:
 				break;

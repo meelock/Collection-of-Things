@@ -40,6 +40,13 @@ minecraft {
     runDir = "eclipse"
 }
 
+repositories {
+    maven {
+        name "xcompwiz"
+        url "http://maven.xcompwiz.com"
+    }
+}
+
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -54,6 +61,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+    compile "com.xcompwiz.lookingglass:lookingglass:0.2.0.00:dev"
 }
 
 processResources
