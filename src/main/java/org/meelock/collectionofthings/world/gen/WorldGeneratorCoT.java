@@ -30,7 +30,7 @@ public class WorldGeneratorCoT implements IWorldGenerator {
 			int x = random.nextInt(16) + blockX;
 			int z = random.nextInt(16) + blockZ;
 			int y = random.nextInt(40);
-			new WorldGenArtifactRuin().generate(world, random, x, 40, z);
+			new WorldGenArtifactRuin().generate(world, random, x, y, z);
 		}
 	}
 
