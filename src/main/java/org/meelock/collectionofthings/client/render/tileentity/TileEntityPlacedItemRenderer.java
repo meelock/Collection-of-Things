@@ -76,6 +76,8 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 			// }
 
 			GL11.glTranslated(x + 0.5d, y + 0.5d, z + 0.5d);
+			
+//			System.out.println("I am rendering! " + direct);
 
 			switch (direct) {
 			case DOWN:
@@ -169,7 +171,6 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D,
 					0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
-			System.out.println("I am rendering!");
 
 			if (item == Items.compass) {
 				TextureAtlasSprite textureatlassprite = ((TextureMap) Minecraft
