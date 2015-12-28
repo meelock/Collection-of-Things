@@ -20,6 +20,7 @@ public class SetblockUtil {
 		public static void fillCube(World world, int x1, int y1, int z1, int x2, int y2, int z2, Block block, int metadata,
 				int notify) {
 				
+						//i will make a thing for the thinkness in a bit
 
 						SetblockUtil.fill(world, x1, y1, z1, x2, y1, z2, block, metadata, notify);
 						SetblockUtil.fill(world, x1, y1, z1, x2, y2, z1, block, metadata, notify);
