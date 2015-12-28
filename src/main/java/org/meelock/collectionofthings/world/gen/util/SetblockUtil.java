@@ -26,6 +26,7 @@ public class SetblockUtil {
 						SetblockUtil.fill(world, x1, y1, z1, x1, y2, z2, block, metadata, notify);
 						SetblockUtil.fill(world, x1, y1, z2, x2, y2, z2, block, metadata, notify);
 						SetblockUtil.fill(world, x2, y1, z1, x2, y2, z2, block, metadata, notify);
+						SetblockUtil.fill(world, x1, y2, z1, x2, y2, z2, block, metadata, notify);
 						
 						
 						
