@@ -1,7 +1,13 @@
 package org.meelock.collectionofthings.client.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+import org.meelock.collectionofthings.blocks.BlockPlacedItem;
+import org.meelock.collectionofthings.log.COTLog;
+import org.meelock.collectionofthings.tileentity.TileEntityPlacedItem;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -14,25 +20,15 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.MapData;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import org.lwjgl.opengl.GL11;
-import org.meelock.collectionofthings.blocks.BlockPlacedItem;
-import org.meelock.collectionofthings.tileentity.TileEntityPlacedItem;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 
 	@Override
-	public void renderTileEntityAt(TileEntity tile, double x, double y,
-			double z, float frame) {
+	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float frame) {
 		if (!(tile instanceof TileEntityPlacedItem))
 			return;
 
@@ -41,15 +37,15 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 		ItemStack itemstack = placed.getItem();
 
 		if (itemstack != null) {
-			int ix = (int) x, iy = (int) y, iz = (int) z;
+			int ix = (int) Math.floor(x), iy = (int) Math.floor(y), iz = (int) Math.floor(z);
 
 			World world = placed.getWorldObj();
 
 			int side = BlockPlacedItem.getBlockSide(world, ix, iy, iz);
+			COTLog.info("Side rendering: " + side);
 			ForgeDirection direct = ForgeDirection.VALID_DIRECTIONS[side];
 
-			EntityItem entityitem = new EntityItem(world, 0.0D, 0.0D, 0.0D,
-					itemstack);
+			EntityItem entityitem = new EntityItem(world, 0.0D, 0.0D, 0.0D, itemstack);
 			Item item = entityitem.getEntityItem().getItem();
 			entityitem.getEntityItem().stackSize = 1;
 			entityitem.hoverStart = 0.0F;
@@ -76,8 +72,8 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 			// }
 
 			GL11.glTranslated(x + 0.5d, y + 0.5d, z + 0.5d);
-			
-//			System.out.println("I am rendering! " + direct);
+
+			// System.out.println("I am rendering! " + direct);
 
 			switch (direct) {
 			case DOWN:
@@ -139,13 +135,11 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 			// }
 			// } else {
 			if (item == Items.compass) {
-				TextureManager texturemanager = Minecraft.getMinecraft()
-						.getTextureManager();
+				TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
 				texturemanager.bindTexture(TextureMap.locationItemsTexture);
 				TextureAtlasSprite textureatlassprite1 = ((TextureMap) texturemanager
 						.getTexture(TextureMap.locationItemsTexture))
-						.getAtlasSprite(Items.compass.getIconIndex(
-								entityitem.getEntityItem()).getIconName());
+								.getAtlasSprite(Items.compass.getIconIndex(entityitem.getEntityItem()).getIconName());
 
 				if (textureatlassprite1 instanceof TextureCompass) {
 					TextureCompass texturecompass = (TextureCompass) textureatlassprite1;
@@ -153,31 +147,22 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 					double d1 = texturecompass.angleDelta;
 					texturecompass.currentAngle = 0.0D;
 					texturecompass.angleDelta = 0.0D;
-					texturecompass
-							.updateCompass(
-									placed.getWorldObj(),
-									x,
-									z,
-									side < 2 ? 0
-											: ((double) MathHelper
-													.wrapAngleTo180_float((float) (180 + side * 90))),
-									false, true);
+					texturecompass.updateCompass(placed.getWorldObj(), x, z,
+							side < 2 ? 0 : ((double) MathHelper.wrapAngleTo180_float((float) (180 + side * 90))), false,
+							true);
 					texturecompass.currentAngle = d0;
 					texturecompass.angleDelta = d1;
 				}
 			}
 
 			RenderItem.renderInFrame = true;
-			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D,
-					0.0D, 0.0D, 0.0F, 0.0F);
+			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			RenderItem.renderInFrame = false;
 
 			if (item == Items.compass) {
-				TextureAtlasSprite textureatlassprite = ((TextureMap) Minecraft
-						.getMinecraft().getTextureManager()
+				TextureAtlasSprite textureatlassprite = ((TextureMap) Minecraft.getMinecraft().getTextureManager()
 						.getTexture(TextureMap.locationItemsTexture))
-						.getAtlasSprite(Items.compass.getIconIndex(
-								entityitem.getEntityItem()).getIconName());
+								.getAtlasSprite(Items.compass.getIconIndex(entityitem.getEntityItem()).getIconName());
 
 				if (textureatlassprite.getFrameCount() > 0) {
 					textureatlassprite.updateAnimation();
