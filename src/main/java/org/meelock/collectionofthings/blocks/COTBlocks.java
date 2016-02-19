@@ -21,14 +21,12 @@ public class COTBlocks {
 
 	public static void init() {
 		// not sure this line's purpose
-		addBlock(new TestBlock(Material.rock), "ItemLayingOnTheGround",
-				CreativeTabs.tabBlock);
-		
+		addBlock(new TestBlock(Material.rock), "ItemLayingOnTheGround", CreativeTabs.tabBlock);
+		addBlock(new BlockElectricFence(Material.rock), NameRef.Blocks.ELECTRIC_FENCE, CreativeTabs.tabDecorations);
 		addBlock(new BlockPlacedItem(Material.rock), NameRef.Blocks.PLACED_ITEM, null);
 	}
 
-	public static <T extends Block> T addBlock(T block, String name,
-			CreativeTabs tab) {
+	public static <T extends Block> T addBlock(T block, String name, CreativeTabs tab) {
 		if (!COTConfig.isBlockEnabled(name))
 			return block;
 		block.setBlockName(name);
@@ -38,8 +36,7 @@ public class COTBlocks {
 		return block;
 	}
 
-	public static <T extends Block> T addBlock(T block, String name,
-			CreativeTabs tab, String oreName) {
+	public static <T extends Block> T addBlock(T block, String name, CreativeTabs tab, String oreName) {
 		if (!COTConfig.isBlockEnabled(name))
 			return block;
 		block.setBlockName(name);
@@ -55,8 +52,7 @@ public class COTBlocks {
 		for (Entry<String, Block> entry : entrySet) {
 			GameRegistry.registerBlock(entry.getValue(), entry.getKey());
 			if (oreDictMap.containsKey(entry.getKey()))
-				OreDictionary.registerOre(oreDictMap.get(entry.getKey()),
-						entry.getValue());
+				OreDictionary.registerOre(oreDictMap.get(entry.getKey()), entry.getValue());
 		}
 	}
 
