@@ -1,2 +1,4 @@
 item.itemActivatorStone.name=Activator Stone
+item.itemPlasticBar.name=Plastic Bar
 tile.blockElectricFence.name=Electric Fence
+tile.blockLaserFence.name=Laser Fence

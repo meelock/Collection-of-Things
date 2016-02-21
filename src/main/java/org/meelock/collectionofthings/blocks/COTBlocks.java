@@ -24,6 +24,7 @@ public class COTBlocks {
 		addBlock(new TestBlock(Material.rock), "ItemLayingOnTheGround", CreativeTabs.tabBlock);
 		addBlock(new BlockElectricFence(Material.rock), NameRef.Blocks.ELECTRIC_FENCE, CreativeTabs.tabDecorations);
 		addBlock(new BlockPlacedItem(Material.rock), NameRef.Blocks.PLACED_ITEM, null);
+		addBlock(new BlockLaserFence(Material.glass), NameRef.Blocks.LASER_FENCE, CreativeTabs.tabDecorations);
 	}
 
 	public static <T extends Block> T addBlock(T block, String name, CreativeTabs tab) {

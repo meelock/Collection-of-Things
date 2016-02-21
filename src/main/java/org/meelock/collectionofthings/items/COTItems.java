@@ -19,6 +19,7 @@ public class COTItems {
 	public static void init() {
 		addItem(new ItemPlaceable(), NameRef.Items.ACTIVATOR_STONE,
 				CreativeTabs.tabMisc);
+		addItem(new ItemPlasticBar(), NameRef.Items.PLASTICBAR, CreativeTabs.tabMaterials);
 	}
 
 	public static <T extends Item> T addItem(T item, String name,
