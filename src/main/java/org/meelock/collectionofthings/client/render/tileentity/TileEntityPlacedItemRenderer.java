@@ -37,17 +37,19 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 		ItemStack itemstack = placed.getItem();
 
 		if (itemstack != null) {
-			int ix = (int) Math.floor(x), iy = (int) Math.floor(y), iz = (int) Math.floor(z);
+			int bx = placed.xCoord, by = placed.yCoord, bz = placed.zCoord;
 
 			World world = placed.getWorldObj();
 
-			int side = BlockPlacedItem.getBlockSide(world, ix, iy, iz);
-			COTLog.info("Side rendering: " + side);
+			int side = BlockPlacedItem.getBlockSide(world, bx, by, bz);
+			// COTLog.info("pos: x: " + bx + ", y: " + by + ", z: " + bz);
+			// COTLog.info("Side rendering: " + side);
 			ForgeDirection direct = ForgeDirection.VALID_DIRECTIONS[side];
 
 			EntityItem entityitem = new EntityItem(world, 0.0D, 0.0D, 0.0D, itemstack);
 			Item item = entityitem.getEntityItem().getItem();
 			entityitem.getEntityItem().stackSize = 1;
+			entityitem.age = 0;
 			entityitem.hoverStart = 0.0F;
 			GL11.glPushMatrix();
 
@@ -71,28 +73,44 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 			// GL11.glTranslatef(0.16F, -0.16F, 0.0F);
 			// }
 
-			GL11.glTranslated(x + 0.5d, y + 0.5d, z + 0.5d);
-
+			GL11.glTranslated(x, y, z);
 			// System.out.println("I am rendering! " + direct);
 
+			GL11.glTranslatef(0.5f, 0.5f, 0.5f);
 			switch (direct) {
 			case DOWN:
-				GL11.glTranslatef(0f, -0.5f + (1f / 16f), 0f);
-				GL11.glRotatef(90f, 1f, 0f, 0f);
+				GL11.glRotatef(270f, 1f, 0f, 0f);
 				break;
 			case UP:
+				GL11.glRotatef(90f, 1f, 0f, 0f);
 				break;
 			case NORTH:
+				// nothing to do here
 				break;
 			case SOUTH:
+				GL11.glRotatef(180f, 0f, 1f, 0f);
 				break;
 			case WEST:
+				GL11.glRotatef(90f, 0f, 1f, 0f);
 				break;
 			case EAST:
+				GL11.glRotatef(270f, 0f, 1f, 0f);
 				break;
 			default:
 				break;
 			}
+			GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
+
+			// float f9 = 0.0625F;
+			// float f10 = 0.021875F;
+			// int b0 = 1;
+			GL11.glTranslatef(0.5f, 0f, 0f);
+			GL11.glRotatef(180f, 0f, 1f, 0f);
+			GL11.glTranslatef(-0.5f, 0f, 0f);
+			GL11.glTranslatef(0.5f, 0.05f, -0.0421875f);
+			// COTLog.info("Z offset:" + (((f9 + f10) * (float) b0 / 2.0F) - (f9
+			// + f10)));
+			GL11.glScalef(2f, 2f, 2f);
 
 			// TODO add render placed item event
 			// net.minecraftforge.client.event.RenderItemInFrameEvent event =
@@ -147,7 +165,7 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 					double d1 = texturecompass.angleDelta;
 					texturecompass.currentAngle = 0.0D;
 					texturecompass.angleDelta = 0.0D;
-					texturecompass.updateCompass(placed.getWorldObj(), x, z,
+					texturecompass.updateCompass(placed.getWorldObj(), bx, bz,
 							side < 2 ? 0 : ((double) MathHelper.wrapAngleTo180_float((float) (180 + side * 90))), false,
 							true);
 					texturecompass.currentAngle = d0;
@@ -155,9 +173,9 @@ public class TileEntityPlacedItemRenderer extends TileEntitySpecialRenderer {
 				}
 			}
 
-			RenderItem.renderInFrame = true;
+			// RenderItem.renderInFrame = true;
 			RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
-			RenderItem.renderInFrame = false;
+			// RenderItem.renderInFrame = false;
 
 			if (item == Items.compass) {
 				TextureAtlasSprite textureatlassprite = ((TextureMap) Minecraft.getMinecraft().getTextureManager()

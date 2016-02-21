@@ -24,11 +24,10 @@ public class ItemPlaceable extends Item {
 			return false;
 		ForgeDirection dir = ForgeDirection.VALID_DIRECTIONS[side];
 		int ox = x + dir.offsetX, oy = y + dir.offsetY, oz = z + dir.offsetZ;
-		world.setBlock(ox, oy, oz, COTBlocks.getBlock(NameRef.Blocks.PLACED_ITEM));
+		world.setBlock(ox, oy, oz, COTBlocks.getBlock(NameRef.Blocks.PLACED_ITEM), dir.getOpposite().ordinal(), 3);
 		TileEntityPlacedItem tile = (TileEntityPlacedItem) world.getTileEntity(ox, oy, oz);
 		ItemStack single = player.inventory.decrStackSize(player.inventory.currentItem, 1);
 		tile.setItem(single);
-		world.setBlockMetadataWithNotify(ox, oy, oz, side, 2);
 		COTLog.info("Placing item on side: " + side);
 		return true;
 	}
